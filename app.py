@@ -4,14 +4,14 @@ from bs4 import BeautifulSoup
 import os
 app = Flask(__name__)
 
-port = int(os.environ.get("PORT", 8080))
+# port = int(os.environ.get("PORT", 8080))
 
 @app.route('/do-health-checks')
-
 def hello_world():
-
     return 'Hello World'
-def obtener_datos():
+    
+@app.route('/',methods =['POST'])
+def main():
     # Obtener los datos de la solicitud POST
     
     tracking=request.json.get('guia')
@@ -42,5 +42,7 @@ def obtener_datos():
         return jsonify({"error": "La solicitud no fue exitosa. Código de respuesta:", }), 400
     
 
+'''
 if __name__ == "__main__":
     app.run(port=port)
+'''
