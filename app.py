@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import os
 app = Flask(__name__)
 
-port = int(os.environ.get("PORT", 5000))
+port = int(os.environ.get("PORT", 8080))
 @app.route('/', methods=['POST'])
 def obtener_datos():
     # Obtener los datos de la solicitud POST
