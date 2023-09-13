@@ -1,15 +1,14 @@
 from flask import Flask, request, jsonify
 import requests
 from bs4 import BeautifulSoup
-
+import os
 app = Flask(__name__)
 
-
+port = int(os.environ.get("PORT", 5000))
 @app.route('/', methods=['POST'])
 def obtener_datos():
     # Obtener los datos de la solicitud POST
-
-
+    
     tracking=request.json.get('guia')
 
     # Extraer la URL de la página web de la solicitud
@@ -32,8 +31,11 @@ def obtener_datos():
         for elemento_id in ids:
             elemento = soup.find(id=elemento_id)
             valores[elemento_id] = elemento.text if elemento else "No se encontró"
-
         # Devolver los valores como JSON
         return jsonify(valores)
     else:
         return jsonify({"error": "La solicitud no fue exitosa. Código de respuesta:", }), 400
+    
+
+if __name__ == "__main__":
+    app.run(port=port)
