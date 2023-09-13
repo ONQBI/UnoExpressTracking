@@ -5,7 +5,12 @@ import os
 app = Flask(__name__)
 
 port = int(os.environ.get("PORT", 8080))
-@app.route('/', methods=['POST'])
+
+@app.route('/do-health-checks')
+
+def hello_world():
+
+    return 'Hello World'
 def obtener_datos():
     # Obtener los datos de la solicitud POST
     
